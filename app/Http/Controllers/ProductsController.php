@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
@@ -41,25 +42,37 @@ class ProductsController extends Controller
         $product->save();
         return redirect('/');
     }
-    function products()
+
+    function products(Request $request)
     {
-        $product = Product::paginate(6);
-        return view('admin', compact('product'));
+        $categories = Categories::all();
+        $product = Product::orderBy('created_at', 'desc');
+        if ($request->search) {
+            $product = $product->where('name', 'like', '%' . $request->search . "%");
+        }
+        if ($request->filter && $request->filter != 'all') {
+            $product = $product->where('category_id', $request->filter);
+        }
+        $product = $product->paginate(6);
+        return view('admin', compact('product', 'categories'));
+
     }
+
     function userHome()
     {
         $product = Product::paginate(6);
         return view('products', compact('product'));
     }
+
     function admin()
     {
         $product = Product::paginate(6);
         return view('adminPanel', compact('product'));
     }
+
     function adminPanel()
     {
-        $product = Product::paginate(6);
-        return view('admin', compact('product'));
+        return redirect('/products');
     }
 
 
@@ -78,8 +91,9 @@ class ProductsController extends Controller
 
     function edit($id)
     {
+        $categories = Categories::all();
         $data = Product::find($id);
-        return view('/updateProduct', ['data' => $data]);
+        return view('/updateProduct', ['data' => $data, 'categories' => $categories]);
     }
 
     function update($id, Request $request)
@@ -89,19 +103,20 @@ class ProductsController extends Controller
         $product->price = $request->price;
         $product->qty = $request->qty;
         $product->description = $request->description;
+        $product->category_id = $request->category;
         $image = $request->file('img');
         $name = time() . '.' . $image->getClientOriginalExtension();
         $destinationPath = public_path('/images');
         $image->move($destinationPath, $name);
         $product->image = '/images/' . $name;
         $product->update();
-        return redirect('/dashboard');
+        return redirect('/products');
     }
 
     function search(Request $request)
     {
         $data = Product::where('name', 'like', '%' . $request->search . "%")->paginate(6);
-        return view('products', ['product' => $data]);
+        return view('dashboard', ['product' => $data]);
     }
 
     function AdminProductSearch(Request $request)
@@ -111,22 +126,31 @@ class ProductsController extends Controller
     }
 
 
+    function detail($id)
+    {
+        $data = Product::find($id);
+        return view('detail', ['product' => $data]);
+    }
 
-    function detail($id){
+    function productDetail($id)
+    {
         $data = Product::find($id);
-        return view('detail',['product'=>$data]);
+        return view('productDetail', ['product' => $data]);
     }
-    function productDetail($id){
-        $data = Product::find($id);
-        return view('productDetail',['product'=>$data]);
-    }
-    function cart($id,  Request $request){
+
+    function cart($id, Request $request)
+    {
         $data = Product::find($id);
         if ($data) {
             $data->qty--;
             $data->update();
         }
 //        return view('cart',['product'=>$data]);
+    }
+
+    function categories()
+    {
+        return Categories::all();
     }
 
 }

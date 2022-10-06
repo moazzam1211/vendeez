@@ -30,10 +30,10 @@
                     </li>
                 </ul>
             @endif
-            <form class="d-flex" role="search" action="/search" method="get">
-                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
-            </form>
+{{--            <form class="d-flex" role="search" action="/search" method="get">--}}
+{{--                <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">--}}
+{{--                <button class="btn btn-outline-light" type="submit">Search</button>--}}
+{{--            </form>--}}
                 @if(\Auth()->user() && (\Auth()->user()->role_id == 1 || \Auth()->user()->role_id == 3))
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">

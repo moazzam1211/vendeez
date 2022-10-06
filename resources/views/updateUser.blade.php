@@ -7,7 +7,7 @@
     <div class="card card-shadow" style="margin-top: 30px">
         <div class="card-body" style="background: gray">
             <div class="container container2">
-                <form class="row g-3" action="/update2/{{$data['id']}}" method="post" enctype="multipart/form-data">
+                <form class="row g-3" action="/user-update/{{$data['id']}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <label for="inputName" class="form-label" style="color: white">Name</label>

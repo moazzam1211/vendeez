@@ -31,7 +31,17 @@
                     <textarea type="text" name="description" class="form-control"
                            id="inputDes" placeholder="enter product description">{{$data['description']}}</textarea>
                 </div>
-
+                <div class="col-md-3">
+                    <label for="inputDes" class="form-label" style="color: white">Select Category</label>
+                    <select class="form-select" name="category" aria-label="Default select example">
+                        <option selected>Select Category</option>
+                        @foreach($categories as $category)
+                            <option
+                                value="{{$category->id}}" {{$data->category_id == $category->id ? 'selected' : ''}}>{{$category->category}}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
                 <label for="inputDes" class="form-label" style="color: white">Select an Image</label>
                 <input type="file" name="img">
 

@@ -7,32 +7,30 @@
             <button class="btn btn-outline-primary" type="submit">Search</button>
         </form>
     </div>
-    <div class="card card-shadow" style="padding: 1%; margin-top: 2%">
+    <div class="card card-shadow" style="padding: 1%; margin-top: 2%; background: gray">
         <table class="table tb-1" border="1">
             <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Role</th>
-                <th scope="col">Operation</th>
+                <th scope="col" style="color: white">ID</th>
+                <th scope="col" style="color: white">Name</th>
+                <th scope="col" style="color: white">Email</th>
+                <th scope="col" style="color: white">Role</th>
+                <th scope="col" style="color: white">Operation</th>
             </tr>
             </thead>
             <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td>{{$user['id']}}</td>
-                    <td>{{$user['name']}}</td>
-                    <td>{{$user['email']}}</td>
-                    <td>{{$user->role ? $user->role->role : ''}}</td>
-                    <td>
-                        <a href="/edit2/{{$user['id']}}" class="btn btn-outline-primary">Edit</a>
+                    <td style="color: white">{{$user['id']}}</td>
+                    <td style="color: white">{{$user['name']}}</td>
+                    <td style="color: white">{{$user['email']}}</td>
+                    <td style="color: white">{{$user->role ? $user->role->role : ''}}</td>
+                    <td style="color: white">
+                        <a href="/user-edit/{{$user['id']}}" class="btn btn-outline-light">Edit</a>
                         <form action="/delete/" method="post" style="display: inline-block; margin-left: 2%">
                             @csrf
-                            @if($user->role_id == 1)
-                            <button type="submit" class="btn btn-outline-danger" style="visibility: hidden">Delete</button>
-                            @elseif($user->role_id ==3)
-                                <button type="submit" class="btn btn-outline-danger" style="visibility: visible">Delete</button>
+                            @if(Auth()->user()->role_id == 3)
+                            <button type="submit" class="btn btn-outline-danger" >Delete</button>
                             @endif
                         </form>
                     </td>

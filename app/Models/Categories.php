@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Categories extends Model
 {
     use HasFactory;
-
-    protected $table = 'product';
-    function categories(){
-        return $this->belongsTo('App\Models\Categories');
+    function products(){
+        return $this->hasOne('App\Models\Product');
     }
 }
