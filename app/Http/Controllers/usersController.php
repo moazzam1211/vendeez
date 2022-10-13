@@ -35,9 +35,13 @@ class usersController extends Controller
     function roles(){
         return Role::all();
     }
-    function userCheck(){
 
+    function delete($id){
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/users');
     }
+
     function UserSearch(Request $request)
     {
         $data = User::where('role_id','!=', 3)->where('name', 'like', '%' . $request->search . "%")->paginate(6);

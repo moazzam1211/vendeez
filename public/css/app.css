@@ -12406,6 +12406,13 @@ textarea.form-control-lg {
 .card-image {
     width: 30%;
     height: 40%;
+    padding:1%;
+    margin: 2% auto;
+}
+.card-image2{
+    width: 30%;
+    height: 26%;
+    padding:1%;
     margin: 2% auto;
 }
 
@@ -12414,7 +12421,7 @@ textarea.form-control-lg {
 }
 
 .card-size-2 {
-    height: 450px;
+    height: 400px;
 }
 
 .image-size {
@@ -12453,8 +12460,6 @@ f2 {
 .card-shadow {
     border: white;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    /*box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;*/
-    /*box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;*/
 }
 
 .btn3 {

@@ -24,6 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/dashboard', [\App\Http\Controllers\ProductsController::class, 'userHome']);
         Route::get('/cart/{id}', [\App\Http\Controllers\ProductsController::class, 'cart']);
         Route::get('/search', [\App\Http\Controllers\ProductsController::class, 'search']);
+        Route::get('remove/{id}', [\App\Http\Controllers\ProductsController::class, 'removeFromCart']);
+        Route::get('/checkout', [\App\Http\Controllers\ProductsController::class, 'checkout']);
+        Route::post('/checkout-item', [\App\Http\Controllers\ProductsController::class, 'checkoutProducts']);
     });
 
 });
@@ -39,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/product-search', [\App\Http\Controllers\ProductsController::class, 'AdminProductSearch']);
         Route::get('/user-search', [\App\Http\Controllers\usersController::class, 'UserSearch']);
         Route::post('delete/{id}', [\App\Http\Controllers\ProductsController::class, 'delete']);
+        Route::post('delete-user/{id}', [\App\Http\Controllers\usersController::class, 'delete']);
         Route::get('edit/{id}', [\App\Http\Controllers\ProductsController::class, 'edit']);
         Route::post('update/{id}', [\App\Http\Controllers\ProductsController::class, 'update']);
         Route::get('/add', [\App\Http\Controllers\ProductsController::class, 'addProduct']);

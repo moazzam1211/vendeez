@@ -27,10 +27,10 @@
                     <td style="color: white">{{$user->role ? $user->role->role : ''}}</td>
                     <td style="color: white">
                         <a href="/user-edit/{{$user['id']}}" class="btn btn-outline-light">Edit</a>
-                        <form action="/delete/" method="post" style="display: inline-block; margin-left: 2%">
+                        <form action="/delete-user/{{$user['id']}}" method="post" style="display: inline-block; margin-left: 2%">
                             @csrf
                             @if(Auth()->user()->role_id == 3)
-                            <button type="submit" class="btn btn-outline-danger" >Delete</button>
+                            <button type="submit" class="btn btn-danger" >Delete</button>
                             @endif
                         </form>
                     </td>

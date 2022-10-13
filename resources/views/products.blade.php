@@ -1,5 +1,6 @@
 @extends('layouts.appLayout')
 @section('content')
+
     <div style="text-align: center;">
         <img src="/images/Banner.png" width="800" height="100"
              class="img-fluid" alt="...">
@@ -10,7 +11,7 @@
 
                 <div class="col-md-4 product-card ">
                     <a href="/productDetail/{{$item['id']}}" class="f2" style="text-decoration: none">
-                        <div class="card card-size card-shadow">
+                        <div class="card card-size card-shadow" style="background: mintcream;">
                             <div class="card-image ">
                                 <img src="{{$item['image']}}" class="card-img-top img-s" alt="...">
                             </div>

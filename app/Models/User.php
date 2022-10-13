@@ -45,4 +45,10 @@ class User extends Authenticatable
     function role(){
         return $this->belongsTo('App\Models\Role');
     }
+    function cart(){
+        return $this->belongsTo('App\Models\Cart');
+    }
+    function checkout(){
+        return $this->belongsTo('App\Models\Checkout');
+    }
 }

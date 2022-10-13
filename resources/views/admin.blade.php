@@ -36,7 +36,7 @@
         <div class="row">
             @foreach($product as $item)
                 <div class="col-md-4 product-card">
-                    <div class="card card-size-2 card-shadow">
+                    <div class="card card-size-2 card-shadow" style="background: mintcream;">
                         <div class="card-image">
                             <img src="{{$item['image']}}" class="card-img-top" alt="...">
                         </div>

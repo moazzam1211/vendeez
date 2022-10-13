@@ -4,7 +4,7 @@
         <a href="/" style="font-size: medium">Go Back</a>
     </div>
     <div class="container container2">
-        <div class="card card-shadow">
+        <div class="card card-shadow" style="background: mintcream;">
             <div class="row">
                 <div class="col-3">
                     <img src="{{$product['image']}}" class="card-img-top img-size2" alt="...">
@@ -16,7 +16,14 @@
                         <p class="card-text title-f3">Detail: {{$product['description']}}</p>
                         <div>
                             @if(Auth()->user() && Auth()->user()->role_id == 2)
-                                <a href="/cart" class="btn btn-primary edit-button container2 ">Add to Cart</a>
+                                @if($product['qty'] <1)
+                                    <a href="/cart/{{$product['id']}}"
+                                       class="btn btn-primary edit-button container2 disabled">Add to Cart</a>
+                                    <h6 style="color: red">Out of Stock</h6>
+                                @elseif($product['qty'] >=1)
+                                    <a href="/cart/{{$product['id']}}" class="btn btn-primary edit-button container2 ">Add
+                                        to Cart</a>
+                                @endif
                             @elseif(Auth()->user() && (Auth()->user()->role_id == 3 || Auth()->user()->role_id == 1))
                                 <a href="/edit/{{$product['id']}}" class="btn btn-primary edit-button">Edit</a>
                                 <form action="/delete/{{$product['id']}}" method="post">
